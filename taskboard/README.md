@@ -300,16 +300,16 @@ curl -s http://127.0.0.1:8080/api/tasks
 Résultat attendu : la tâche créée à l'installation.
 
 ```text
-[{"done":false,"id":1,"title":"Découvrir Docker Compose"}]
+[{"done":false,"id":1,"title":"D\u00e9couvrir Docker Compose"}]
 ```
 
-`é` est la façon dont le format JSON écrit la lettre `é` : c'est normal.
+`\u00e9` est la façon dont le format JSON écrit la lettre `é` : c'est normal.
 
 ```bash
 curl -s -X POST -H 'Content-Type: application/json' -d '{"title":"Ma première tâche"}' http://127.0.0.1:8080/api/tasks
 ```
 
-Résultat attendu : `{"done":false,"id":2,"title":"Ma première tâche"}`. La tâche est enregistrée.
+Résultat attendu : `{"done":false,"id":2,"title":"Ma premi\u00e8re t\u00e2che"}`. La tâche est enregistrée.
 
 ### 5.3 Les données sont conservées
 

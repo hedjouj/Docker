@@ -130,7 +130,7 @@ curl -s -X POST -H 'Content-Type: application/json' -d '{}' http://localhost:500
 ```
 
 ```text
-[{"done":false,"id":1,"title":"Découvrir Docker Compose"}]
+[{"done":false,"id":1,"title":"D\u00e9couvrir Docker Compose"}]
 {"done":false,"id":2,"title":"Rattraper les TP"}
 {"error":"le champ 'title' est obligatoire"}
 ```
@@ -230,8 +230,8 @@ curl -s http://localhost:5000/api/tasks
 ```
 
 ```text
-[{"done":false,"id":1,"title":"Découvrir Docker Compose"},{"done":false,"id":2,"title":"Tâche persistante"}]
-[{"done":false,"id":1,"title":"Découvrir Docker Compose"}]
+[{"done":false,"id":1,"title":"D\u00e9couvrir Docker Compose"},{"done":false,"id":2,"title":"T\u00e2che persistante"}]
+[{"done":false,"id":1,"title":"D\u00e9couvrir Docker Compose"}]
 ```
 
 `down` supprime les conteneurs et le réseau, **mais conserve le volume** : la tâche est toujours là. `down -v` supprime aussi le volume : la base repart de zéro, avec seulement la tâche d'`init.sql`.
