@@ -1,0 +1,19 @@
+# Configuration locale et secrets : jamais versionnés
+.env
+secrets/
+
+# Sauvegardes de la base
+backups/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Éditeurs et systèmes
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

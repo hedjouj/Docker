@@ -1,0 +1,10 @@
+# Éditeurs et systèmes
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Archives de travail
+*.tar.gz
+*.zip
