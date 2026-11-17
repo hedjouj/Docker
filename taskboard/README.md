@@ -331,7 +331,7 @@ Chaque commande teste une protection :
 docker compose exec front wget -q -O- -T 3 http://db:5432
 ```
 
-Résultat attendu : `wget: bad address 'db'`. Le front ne peut pas joindre la base.
+Résultat attendu : `wget: bad address 'db:5432'`. Le front ne peut pas joindre la base.
 
 ```bash
 docker compose exec db wget -q -O- -T 3 https://example.com
@@ -478,15 +478,18 @@ docker compose up -d --wait
 
 ### Augmenter le nombre d'API (scaling)
 
-L'API ne garde aucune donnée en mémoire : on peut en lancer plusieurs copies pour répartir la charge. Le front distribue alors les requêtes entre elles.
+L'API ne garde aucune donnée en mémoire : on peut en lancer plusieurs copies pour répartir la charge. Le front les découvre par le DNS interne de Docker, qu'il interroge toutes les 10 secondes, puis leur envoie les requêtes à tour de rôle.
 
 ```bash
 docker compose up -d --scale api=3 --wait
 docker compose ps api
+sleep 10
 for i in $(seq 1 6); do curl -s http://127.0.0.1:8080/api/health; echo; done
 ```
 
-Résultat attendu : trois conteneurs `taskboard-api-1`, `-2` et `-3`, et la valeur `host` qui change d'une réponse à l'autre : ce sont trois copies différentes qui répondent.
+Le `sleep 10` laisse au front le temps de découvrir les nouvelles copies.
+
+Résultat attendu : trois conteneurs `taskboard-api-1`, `-2` et `-3`, et trois valeurs `host` différentes qui reviennent à tour de rôle : ce sont les trois copies qui répondent chacune leur tour.
 
 Pour revenir à une seule copie :
 
